@@ -19,10 +19,11 @@ const initialState = {
 }
  export const FilterProduct=({children})=>{
     const {products} = useProContext();
+    console.log(products)
     const [state, dispatch] = useReducer(reducer, initialState);
     useEffect(() => {
         dispatch({ type: "LOAD_FILTER_PRODUCTS", payload: products });
-      }, [products]);
+      },[products]);
 
       //to set grid view
       const setGridView = () => {
@@ -49,12 +50,15 @@ const initialState = {
         let value = event.target.value;
         return dispatch({ type: "UPDATE_FILTERS_VALUE", payload: { name, value } });
       };
+      const clearFilterValue=()=>{
+        return dispatch({ type: "CLEAR_FILTERS_VALUE"}); 
+      }
 
 
 
 
     return(
-        <FilterContext.Provider value={{...state,setGridView,setListView,sorting,updateFilterValue}}>
+        <FilterContext.Provider value={{...state,setGridView,setListView,sorting,updateFilterValue,clearFilterValue}}>
             {children}
         </FilterContext.Provider>
     )
