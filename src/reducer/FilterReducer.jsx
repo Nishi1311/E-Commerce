@@ -1,20 +1,23 @@
 const FilterReducer = (state,action) => {
     switch(action.type){
-        case "LOAD_FILTER_PRODUCTS":
-          let priceArr=action.payload.map((curele)=> curele.price)
-          let maxPrice=Math.max.apply(null,priceArr)
+           case "LOAD_FILTER_PRODUCTS":
+            
+          
 
-            return{
+              return{
                 ...state,
                 filter_products:[...action.payload],
                 all_products: [...action.payload],
-                filters:{...state.filters,
+                filters:{
+                  ...state.filters,
                   maxPrice:maxPrice,
-                  Price:maxPrice}
-
+                  Price:maxPrice
+                }
+                
 
             };
             case "SET_GRID_VIEW":
+                
                 return{
                     ...state,
                     grid_view: true
@@ -36,6 +39,7 @@ const FilterReducer = (state,action) => {
             case "SORTING_PRODUCTS":
                 let newSortData;
                 const{filter_products,sorting_value}=state
+                console.log(filter_products)
                 let tempSortProduct = [...filter_products];
                
                   if (sorting_value === "highest") {
@@ -82,11 +86,12 @@ const FilterReducer = (state,action) => {
                           
                         },
                       };
+           
             case "FILTER_PRODUCTS":
                 let {all_products}=state
                 let tempFilterProduct = [...all_products];
 
-                const { text,category,company,color } = state.filters;
+                const { text,category,company,color,Price } = state.filters;
 
                   if (text) {
                     tempFilterProduct = tempFilterProduct.filter((curElem) => {
@@ -109,11 +114,30 @@ const FilterReducer = (state,action) => {
                       return curElem.colors.includes(color);;
                     });
                   }
+                  if (Price) {
+                    tempFilterProduct = tempFilterProduct.filter((curElem) => {
+                      return curElem.price<=Price;
+                    });
+                  }
                 return {
                   ...state,
                   filter_products: tempFilterProduct,
                 };
-                  
+                case "CLEAR_FILTERS_VALUE":
+                  return {
+                    ...state,
+                    
+                    filters: {
+                      ...state.filters,
+                      text: "",
+                      category:"All",
+                      company:"All",
+                      Color:'All',
+                      maxPrice:0,
+                      Price:state.filters.maxPrice,
+                      minPrice:state.filters.maxPrice
+                    }
+                  }    
                    
                    
 
