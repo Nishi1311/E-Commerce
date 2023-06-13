@@ -1,7 +1,8 @@
 const FilterReducer = (state,action) => {
     switch(action.type){
            case "LOAD_FILTER_PRODUCTS":
-            
+              let PriceArr= action.payload.map((curele)=>curele.price);
+              let maxPrice=Math.max(...PriceArr);
           
 
               return{
@@ -10,8 +11,9 @@ const FilterReducer = (state,action) => {
                 all_products: [...action.payload],
                 filters:{
                   ...state.filters,
-                  maxPrice:maxPrice,
-                  Price:maxPrice
+                  maxPrice,
+                  price:maxPrice
+                  
                 }
                 
 
@@ -91,7 +93,7 @@ const FilterReducer = (state,action) => {
                 let {all_products}=state
                 let tempFilterProduct = [...all_products];
 
-                const { text,category,company,color,Price } = state.filters;
+                const { text,category,company,color,price } = state.filters;
 
                   if (text) {
                     tempFilterProduct = tempFilterProduct.filter((curElem) => {
@@ -111,14 +113,19 @@ const FilterReducer = (state,action) => {
                   }
                   if (color!=="All") {
                     tempFilterProduct = tempFilterProduct.filter((curElem) => {
-                      return curElem.colors.includes(color);;
+                      return curElem.colors.includes(color);
                     });
                   }
-                  if (Price) {
-                    tempFilterProduct = tempFilterProduct.filter((curElem) => {
-                      return curElem.price<=Price;
-                    });
+                  if (price===0) {
+                    tempFilterProduct = tempFilterProduct.filter((curElem) => curElem.price===price
+                    )
                   }
+
+                  else{
+                    tempFilterProduct = tempFilterProduct.filter((curElem) => curElem.price<=price
+                    )
+                    };
+                  
                 return {
                   ...state,
                   filter_products: tempFilterProduct,
@@ -132,9 +139,9 @@ const FilterReducer = (state,action) => {
                       text: "",
                       category:"All",
                       company:"All",
-                      Color:'All',
-                      maxPrice:0,
-                      Price:state.filters.maxPrice,
+                      color:'All',
+                     
+                      price:state.filters.maxPrice,
                       minPrice:state.filters.maxPrice
                     }
                   }    

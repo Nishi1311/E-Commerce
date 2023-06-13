@@ -36,16 +36,7 @@ const ListView = ({ products }) => {
 
 const Wrapper = styled.section`
   padding: 9rem 0;
-  .container {
-    max-width: 120rem;
-  }
-  .grid {
-    display:grid;
-    gap: 3.2rem;
-  }
-  .grid-two-column{
-    grid-template-columns: repeat(2,1fr);
-}
+  
   figure {
     width: auto;
     display: flex;
@@ -111,6 +102,42 @@ const Wrapper = styled.section`
     .btn-main .btn:hover {
       color: #fff;
     }
+  }
+  @media screen and (max-width: 887px) {
+    .grid-two-column{
+      grid-template-columns: repeat(1,1fr);
+  }
+  }
+  @media screen and (max-width: 460px) {
+    .grid{
+      gap:2rem;
+    }
+    h3{
+      font-size:1rem;
+    }
+    p{
+      font-size:1rem;
+    }
+    button{
+      font-size:1rem;
+    }
+  }
+  @media screen and (max-width: 300px) {
+    padding:2.5rem 0;
+    figure{
+      width:80%;
+    }
+  
+  .card{
+    width:90%;
+  }
+  .card-data-flex h3{
+  font-size:1.5rem;
+  }
+  .card-data-flex p{
+    font-size:1.5rem;
+    }
+   
   }
 `;
 

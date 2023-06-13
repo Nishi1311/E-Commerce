@@ -11,9 +11,9 @@ const initialState = {
       text: "",
       category:"All",
       company:"All",
-      Color:'All',
+      color:'All',
       maxPrice:0,
-      Price:0,
+      price:0,
       minPrice:0
     }
 }

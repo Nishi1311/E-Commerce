@@ -4,6 +4,8 @@ import reducer from '../reducer/ProductReducer';
 
 
 const ProductContext=React.createContext();
+const API="https://api.pujakaitem.com/api/products";
+
 const initialState={
    isLoading:false,
    isError:false,
@@ -17,22 +19,33 @@ const AppProvider=({children})=>{
    const [state,dispatch]=useReducer(reducer,initialState)
 
 
-   //for single product api call
-   const getSingleProduct = (url) => {
-    dispatch({ type: "SET_SINGLE_LOADING" });
-    axios.get(url).then((res1)=>{
-      dispatch({ type: "SET_SINGLE_PRODUCT", payload: res1.data })
-    }).catch ((error)=> {
-      dispatch({ type: "SET_SINGLE_ERROR" })
+   
+  const getProducts=(url)=>{
+    dispatch({type:'SET_LOADING'})
+    axios.get(url).then((res)=>{
+      dispatch({type:'SET_API_DATA',payload:res.data})
+    }).catch((err)=>{
+     dispatch({type:'API_ERROR'})
     })
-  };
+  }
+
+  //for single product api call
+  const getSingleProduct = (url) => 
+  {
+   dispatch({ type: "SET_SINGLE_LOADING" });
+   axios.get(url).then((res1)=>{
+   dispatch({ type: "SET_SINGLE_PRODUCT", payload: res1.data })
+   
+ })
+   .catch
+    ((error)=> {
+     dispatch({ type: "SET_SINGLE_ERROR" })
+   })
+  }
+
+
     useEffect(()=>{
-      dispatch({type:'SET_LOADING'})
-     axios.get("https://api.pujakaitem.com/api/products").then((res)=>{
-       dispatch({type:'SET_API_DATA',payload:res.data})
-     }).catch((err)=>{
-      dispatch({type:'API_ERROR'})
-     })
+      getProducts(API)
     },[])
     return(
         <ProductContext.Provider value={{...state,getSingleProduct}}> 

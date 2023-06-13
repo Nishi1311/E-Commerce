@@ -3,7 +3,7 @@ import {FaCheck} from "react-icons/fa"
 import styled from "styled-components";
 import FormatPrice from "../Helper/FormatPrice"
 const FilterSection = () => {
-    const{updateFilterValue, filters: {text,category,color,Price,maxPrice,minPrice},all_products,clearFilterValue}=useFilterContext();
+    const{updateFilterValue, filters: {text,category,color,price,maxPrice,minPrice},all_products,clearFilterValue}=useFilterContext();
     const getCategoryData=(data,attbr)=>{
       let newValue=data.map((cur)=>{
         return cur[attbr]});
@@ -18,9 +18,9 @@ const FilterSection = () => {
     const colorData=getCategoryData(all_products,"colors")
     return(
      
-    <Wrapper>
+    <Wrapper className="abcd">
         
-    <div className="filter-search">
+    <div className=" filter-search">
       <form onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
@@ -90,8 +90,8 @@ const FilterSection = () => {
       </div>
       <div className="filter-price">
         <h3>Price</h3>
-        <p><FormatPrice price={Price}/></p>
-        <input type="range" min={minPrice} max={maxPrice} value={Price} name="Price" onChange={updateFilterValue}/>
+        <p><FormatPrice price={price}/></p>
+        <input type="range" min={minPrice} max={maxPrice} value={price} name="price" onChange={updateFilterValue}/>
       </div>
       <div className="Filter-clear">
         <button type="submit" className="btn" onClick={clearFilterValue}>CLEAR FILTERS</button>
@@ -105,10 +105,16 @@ const FilterSection = () => {
 
 }
 const Wrapper = styled.section`
-  padding: 5rem 0;
+
+  padding: 5rem 0rem;
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  
+  overflow:hidden;
+
+
+  
   h3 {
     padding: 2rem 0;
     font-size: bold;
@@ -117,6 +123,7 @@ const Wrapper = styled.section`
     input {
       padding: 0.6rem 1rem;
       width: 80%;
+      
     }
   }
   .filter-category {
@@ -136,7 +143,8 @@ const Wrapper = styled.section`
       }
       .active {
         border-bottom: 1px solid #000;
-        color:green;
+        color:black;
+        font-weight:bold;
       }
     }
   }
@@ -194,5 +202,88 @@ const Wrapper = styled.section`
     background-color: #ec7063;
     color: #000;
   }
+  ${""/*.btn{
+    background-color: rgb(98, 43, 243);
+    padding: 0.5rem 0.5rem;
+    color: rgb(255, 255, 255);
+    background-color: none;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s linear;
+    border-radius: 4px;
+}
+.btn:hover, .btn:active{
+    background-color: rgb(43, 243, 70);
+color: rgb(0,0,0);}*/}
+@media screen and (max-width: 460px) {
+ .abcd{ max-width:14rem;
+  font-size:0.5rem;
+  padding:0rem;
+ }
+ h3{
+  font-size:1.5rem;
+  padding: 1rem 0;
+ 
+ }
+ .filter-company--select {
+  padding: 0.3rem 0.8rem;
+  font-size: 1rem;
+  
+}
+.filter-search {
+  input {
+    padding: 0.6rem 0.5rem;
+    max-width: 70%;
+    
+  }
+}
+.filter-category {
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.4rem;
+    button {
+      border: none;
+      background-color: white;
+      text-transform: capitalize;
+      cursor: pointer;
+      font-size:1.3rem;
+      &:hover {
+        color:black;
+      }
+    }
+    .active {
+      border-bottom: 1px solid #000;
+      color:black;
+      font-weight:bold;
+    }
+  }
+}
+.filter-color-style > button{
+  font-size:1rem;
+}
+.Filter-clear > button{
+  font-size:1rem;
+}
+.filter-price{
+  
+  p{
+    font-size:1rem;
+  }
+  input{
+    max-width:10rem;
+  }
+  button{
+    font-size:1rem;
+  }
+}
+.filter-color-style {
+  flex-direction:column;
+  gap:1rem;
+}
+}
 `;
 export default FilterSection;

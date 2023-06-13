@@ -26,8 +26,8 @@ const Contact = () => {
     <div >
     <textarea name='Message' cols='30' rows="10" placeholder="Enter your message here"  required></textarea>
     </div>
-    <div className='btn'>
-      <input type='submit' value='Submit' ></input>
+    <div >
+      <input type='submit' value='Submit'className='btn' ></input>
     </div>
 
   </form>
@@ -63,7 +63,7 @@ const Wrapper=styled.section`
   justify-content: center;
   
   flex-direction: column;
-  background-color: aqua;
+  background-color:rgba(148, 175, 181, 0.6);
 }
 .inputtext{
   display: flex;

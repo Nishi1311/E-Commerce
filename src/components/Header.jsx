@@ -7,6 +7,9 @@ import {NavLink} from "react-router-dom";
 import {FiShoppingCart} from 'react-icons/fi';
 import {CgMenu,CgClose} from 'react-icons/cg';
 
+import { PersonOutline } from '@mui/icons-material';
+import { useCartContext } from "../Context/CartContext";
+
 
 
 
@@ -14,172 +17,293 @@ import {CgMenu,CgClose} from 'react-icons/cg';
 
 const Header = () => {
   const [menuIcon,setmenuIcon]= useState();
+  const {total_item} = useCartContext();
   return (
-    <MainHeader>
-    
-    <div className={menuIcon ? "logodiv" : "logodiv1"}>
-     <NavLink to="/">
-      <img src='./images/logo.png' alt='my logo img' className="logo"/>
-      </NavLink>
-    </div>
+    <Wrapper>
     <div className={menuIcon ? "navbar active" : "navbar"}>
-        <ul className='navbar-lists'>
+    <NavLink to="/" className={menuIcon ? "logodiv" : "logodiv1"}>
+      {/*<img src='./images/logo.png' alt='my logo img' className="logo"/>*/}
+      <h2>Bazaar</h2>
+      
+    </NavLink>
+    <div className='navbar-links'>
+     <ul className='navbar-lists'>
             <li>
-                <NavLink to={"/"} className="link" onClick={()=>setmenuIcon(false)}>Home</NavLink>
+                <NavLink to={"/"} className="navbar-link" onClick={()=>setmenuIcon(false)}>Home</NavLink>
             </li>
             <li>
-                <NavLink to={"/About"}className="link" onClick={()=>setmenuIcon(false)}>About</NavLink>
+                <NavLink to={"/About"}className="navbar-link" onClick={()=>setmenuIcon(false)}>About</NavLink>
             </li>
             <li>
-                <NavLink to={"/Products"}className="link" onClick={()=>setmenuIcon(false)}>Products</NavLink>
+                <NavLink to={"/Products"}className="navbar-link" onClick={()=>setmenuIcon(false)}>Products</NavLink>
             </li>
             <li>
-                <NavLink to={"/Contact"}className="link" onClick={()=>setmenuIcon(false)}>Contact</NavLink>
+                <NavLink to={"/Contact"}className="navbar-link" onClick={()=>setmenuIcon(false)}>Contact</NavLink>
+            </li>
+            <li>
+                <NavLink to={""}>
+                <PersonOutline className="user-info"/>
+                </NavLink>
             </li>
             <li>
                 <NavLink to={"/Cart"} className="cart-trolley-link">
                 <FiShoppingCart className="cart-trolley"></FiShoppingCart>
-                <span className="cart-total-item">3</span>
+                <span className="cart-total-item">{total_item}</span>
                 </NavLink>
             </li>
         </ul>
-      </div>
-      <div className={menuIcon ? "active mobile-navbar-btn" : "mobile-navbar-btn"}>
+        <div className={menuIcon ? "active mobile-navbar-btn" : "mobile-navbar-btn"}>
         <CgMenu name="menu-outline" className='mobile-nav-icon' onClick={()=>setmenuIcon(true)}/>
         <CgClose className='mobile-nav-icon close-outline' onClick={()=>setmenuIcon(false)}/>
         </div>
+        </div>
+        
+      </div>
+      
+      
+
       
      
      
        
      
   
-  </MainHeader>
+  
+  </Wrapper>
   )
 };
-const MainHeader = styled.header`
+const Wrapper = styled.header`
+.navbar{
+    display:flex;
+    height:10rem;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 4.8rem;
+    max-width:100%;
+    background-color:#f9f9ff; 
+   
+}
+.logo{
+    height: 11rem;
+    width:11rem;
+    padding: 2rem;
+}
+.navbar-lists{
+    display:flex;
+    gap:4.8rem;
+    ${""/*gap:3rem;
+    list-style:none;
+text-decoration:none;
+font-size: 1.5rem;
+*/}
+    
+    align-items:center;
+}
+.navbar-link{
+    font-size:2.5rem;
+    font-weight:500;
+    text-tranform:uppercase ;
+    
+    &:hover{
+        font-weight:bold;
+        color:#8490ff;
+        transition:color 0.4s linear;
+        
+    }
+    
 
-  padding:0 4.8rem;
-  
-  position: relative;
-  display:flex;
-  justify-content: space-between;
-  align-items:center;
-  background-color: blueviolet;
- width: 89vw;
- height:8rem;
-  
- 
- 
- 
+
+
+    
+
+
+}
+.navbar-links{
+    display:flex;
+    align-items:center;
+    gap:1rem;
+}
+
+
+
+
+.cart-trolley-link{
+    position: relative;
+}
+.cart-trolley{
+    position: relative;
+    font-size: 3.5rem;
+}
+
+.cart-total-item{
+    position: absolute;
+    content: "";
+    width: 2.5rem;
+    height:2rem;
+    background-color: red;
+    left:1.8rem; 
+    top:-3.9rem;
+    border-radius: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3rem;
+    color:black;
+    
+}
+.user-info{
+    background-color: rgba(220, 220, 220, 0.5);
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    padding: 0.3rem;
+}
+.mobile-navbar-btn{
+    display:none;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+.close-outline{
+    display:none;
+}
+h2{
+    font-weight:bold;
+    background-color:grey;
+    padding:1.5rem;
+    border-radius:40rem;
+}
+@media screen and (max-width: 460px) {
+    h2{
+        font-weight:500;
+        background-color:grey;
+        padding:1rem;
+        border-radius:40rem;
+    }
+}
+@media screen and (max-width: 300px) {
+    h2{
+        font-weight:300;
+        font-size:2.5rem;
+        background-color:grey;
+        padding:0.5rem;
+        border-radius:40rem;
+    }
+}
+
+
+
+
+
+ @media screen and (max-width: 950px) {
+     
+    
+     
+    
  .logo{
-     height: 6rem;
-     padding: 1rem;
+     height: 6.5rem;
+     width:6.5rem;
+     padding: 0.2rem;
  }
- .navbar-lists{
-     display: flex;
-     gap:8rem;
-     align-items: center;
-     list-style: none;
-     font-size: 1.5rem;
-     
-     
-     
+ .mobile-navbar-btn{
+     display:inline-block;
+     border: 2px solid black;
+     top: 10rem;
+     left:-30rem;
+     z-index:999;
+     margin-right:2rem;
+                 
+     }
+     .mobile-nav-icon{
+        font-size: 4.2rem;
+     }
+ .close-outline{
+     display: none;
  }
- .link{
-     text-decoration: none; 
-     
- }
- .cart-trolley-link{
-     position: relative;
- }
- .cart-trolley{
-     position: relative;
-     font-size: 2.5rem;
- }
- .cart-total-item{
+ 
+  .navbar-lists{
+     width: 100vw;
+     height: 100vh;
      position: absolute;
-     content: "";
-     width: 1.5rem;
-     height:1rem;
-     background-color: slateblue;
-     left:1.8rem; 
-     top:-2.1rem;
-     border-radius: 45%;
+     top: 0rem;
+     left:0;
+    background-color: honeydew;
      display: flex;
      justify-content: center;
      align-items: center;
-     padding: 0.3rem;
+     flex-direction: column;
+     visibility: hidden;
+     opacity: 0;
      
- }.mobile-navbar-btn{
-     display: none;
-     background-color: transparent;
-     cursor: pointer;
-     border: none;
+     
  }
- @media screen and (max-width: 798px) {
+
+
+ }
+ .logodiv{
+     display: none;
+ }
+ .active .mobile-nav-icon{
+     display:none;
+ }
+ .active .close-outline{
+     display:inline-block;
+     z-index: 9999;
      
-        height:6rem;
-        background-color: honeydew;
-         
-        
-        .logo{
-         height: 4rem;
-         padding: 1rem;
-     }
-     .mobile-navbar-btn{
-         display:inline-block;
-         border: 2px solid black;
-         top: 30rem;
-                     
-         }
-     .close-outline{
-         display: none;
-     }
-      .mobile-nav-icon{
-         font-size: 4.2rem;
-      }
-      .navbar-lists{
-         width: 103vw;
-         height: 100vh;
-         position: absolute;
-         top: 4rem;
-         left:0;
-        background-color: honeydew;
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         flex-direction: column;
-         visibility: hidden;
-         opacity: 0;
-         
-     }
+ }
+ 
+ 
+ .active .navbar-lists{
+     
+     
+  
+     visibility: visible;
+     opacity: 1;
+     
+     
+     z-index: 999;
+ }
+ .active .navbar-link{
+     font-size: 3rem;
+     
+ }
+ .active .cart-trolley{
     
-     }
-     .logodiv{
-         display: none;
-     }
-     .active .mobile-nav-icon{
-         display:none;
-     }
-     .active .close-outline{
-         display:inline-block;
-         z-index: 9999;
-     }
-     
-     
-     .active .navbar-lists{
-         
-         
-      
-         visibility: visible;
-         opacity: 1;
-         
-         z-index: 999;
-     }
-     .active .link{
-         font-size: 2rem;
-     }
+    font-size: 3.5rem;
+}
+.active .cart-total-item{
+    position: absolute;
+    content: "";
+    width: 4.5rem;
+    height:2.5rem;
+    ${""/*background-color: slateblue;*/}
+    left:1.8rem; 
+    top:-4rem;
+    border-radius: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3rem;
+    
+}
+
+@media screen and (max-width: 1200px) {
+    
+    .navbar{
+        justify-content:space-between;
+        padding:0 3.5rem;
+    }
+    .logo{
+        height: 11rem;
+        width:11rem;
+        
+    }
+
+}
+
+
+  
+ 
 
 `;
 export default Header;

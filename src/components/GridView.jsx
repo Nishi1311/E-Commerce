@@ -5,10 +5,12 @@ import Product from "./Product";
 const GridView = ({ products }) => {
   return (
     <Wrapper className="section">
-      <div className="container grid grid-three-column">
+      <div className=" grid grid-three-column">
+        
         {products.map((curElem) => {
           return <Product key={curElem.id} {...curElem} />;
         })}
+        
       </div>
     </Wrapper>
   );
@@ -16,16 +18,18 @@ const GridView = ({ products }) => {
 
 const Wrapper = styled.section`
   padding: 9rem 0;
-  .container {
+  
+  
+  ${""/*.container {
     max-width: 120rem;
-  }
+  } 
   .grid {
     display: grid;
     gap: 3.2rem;
   }
   .grid-three-column{
     grid-template-columns: repeat(3,1fr);
-}
+}*/}
   figure {
     width: auto;
     display: flex;
@@ -34,6 +38,8 @@ const Wrapper = styled.section`
     position: relative;
     overflow: hidden;
     transition: all 0.5s linear;
+    
+    padding:1px;
     &::after {
       content: "";
       position: absolute;
@@ -45,21 +51,22 @@ const Wrapper = styled.section`
       transition: all 0.2s linear;
       cursor: pointer;
     }
-    &:hover::after {
-      width: 100%;
-    }
+    
     &:hover img {
-      transform: scale(1.2);
+      transform: scale(1.1);
     }
     img {
-      max-width: 90%;
-      margin-top: 1.5rem;
-      height: 20rem;
+      max-width: 100%;
+      
+      
+      height: 15rem;
       transition: all 0.2s linear;
     }
   }
   .card {
-    background-color:grey;
+    background-color:#f9f9ff;
+   
+    
     border-radius: 1rem;
     .card-data {
       padding: 0 1rem;
@@ -71,7 +78,7 @@ const Wrapper = styled.section`
       align-items: center;
     }
     .card-data--price {
-      color:yellow;
+      color:black;
     }
     h3 {
       color:black;
@@ -93,9 +100,46 @@ const Wrapper = styled.section`
       a {
         color: rgb(98 84 243);
         font-size: 1.4rem;
+        text-decoration:none;
       }
     }
   }
+  @media screen and (max-width: 1350px) {
+    padding: 3rem 0;
+    .grid-three-column{
+      grid-template-columns: repeat(2,1fr);
+  }
+ 
+}
+@media screen and (max-width: 1050px) {
+  .grid-three-column{
+    grid-template-columns: repeat(1,1fr);
+}
+
+}
+ 
+
+@media screen and (max-width: 460px) {
+  .section{
+    max-width:18rem;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  figure{
+    width:80%;
+  }
+
+.card{
+  width:95%;
+}
+.card-data-flex h3{
+font-size:1.5rem;
+}
+.card-data-flex p{
+  font-size:1.5rem;
+  }
+}
 `;
 
 export default GridView;
