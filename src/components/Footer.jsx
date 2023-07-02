@@ -65,7 +65,7 @@ const Footer = () => {
 
           <div className="footer-bottom--section">
             <hr />
-            <div className=" grid grid-two-column ">
+            <div className=" grid grid-two-column  footer-below">
               <p>
                 @{new Date().getFullYear()} Bazzar. All Rights Reserved
               </p>
@@ -114,6 +114,11 @@ const Wrapper=styled.section`
     
     
 }   
+}
+.div-footer{
+  display:flex;
+  align-items: center;
+  justify-content:center;
 }
 h4{
   font-size:1.5rem;
@@ -186,6 +191,10 @@ footer{
   }  
     
 }
+.footer-below{
+  display:flex;
+  justify-content:center;
+}
 
 @media screen and (max-width: 1200px) {
   .grid-two-column{
@@ -220,7 +229,16 @@ h3{
       
   }
 }
-
+@media screen and (max-width: 580px) {
+  .grid-two-column{
+    grid-template-columns: repeat(1,1fr);
+    
+    
+  }
+  .div-footer{
+    flex-direction:column;
+  }
+}
 
 @media screen and (max-width: 520px) {
   .container{
@@ -305,7 +323,11 @@ p{
 .footer-bottom--section p{
   font-size:1rem;
 }
-
+.grid-four-column{
+  grid-template-columns: repeat(1,1fr);
+  
+  
+}
 
 
 }

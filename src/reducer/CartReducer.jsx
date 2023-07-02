@@ -118,65 +118,7 @@ if(action.type==="INCREASE")
     cart:updatedProduct
   }
 }
-//CART TOTAL ITEm,
 
-/////
-if (action.type === "CART_TOTAL_ITEM_PRICE") {
-     let {total_item,total_price}= state.cart.reduce((initialVal, curElem) => {
-       let { price,amount } = curElem;
-
-       initialVal.total_item = initialVal.total_item + amount;
-       initialVal.total_price = initialVal.total_price + price * amount;
-       return initialVal;
-     }, 
-     {
-      total_item:0,
-      total_price:0,
-     }
-     );
-
-     return {
-       ...state,
-       total_item,
-       total_price,
-     };
-   }
-
-   //if (action.type === "CART_TOTAL_ITEM") {
-    //let {total_item} = state.cart.reduce((initialVal, curElem) => {
-     // let { amount } = curElem;
-
-      //initialVal.total_item += amount;
-      //return initialVal;
-    //});
-
-   // return {
-    //  ...state,
-      //total_item,
-    ////};
-  //}
-
-//if (action.type === "CART_TOTAL_PRICE") {
-     //let total_price = state.cart.reduce((initialVal, curElem) => {
-      // let { price, amount } = curElem;
-
-       //initialVal = initialVal + price * amount;
-
-      // return initialVal;
-    // }, 0);
-
-     //return {
-      // ...state,
-      // total_price,
-   // };
-  // }
-
-
-
-
-  
-    
-  //////
     return state;
   };
   

@@ -7,7 +7,7 @@ import {NavLink} from "react-router-dom";
 import {FiShoppingCart} from 'react-icons/fi';
 import {CgMenu,CgClose} from 'react-icons/cg';
 
-import { PersonOutline } from '@mui/icons-material';
+
 import { useCartContext } from "../Context/CartContext";
 
 
@@ -15,9 +15,24 @@ import { useCartContext } from "../Context/CartContext";
 
 
 
-const Header = () => {
+const Header = ({size}) => {
   const [menuIcon,setmenuIcon]= useState();
-  const {total_item} = useCartContext();
+  const { cart} = useCartContext();
+ 
+  
+    let ans=0;
+    
+function myfun(){
+    const navbar= document.querySelector('.navbar');
+ 
+    navbar.classList.toggle("sticky",window.scrollY>0)
+  
+  
+}
+window.addEventListener('scroll',myfun)
+   
+  
+  
   return (
     <Wrapper>
     <div className={menuIcon ? "navbar active" : "navbar"}>
@@ -40,15 +55,18 @@ const Header = () => {
             <li>
                 <NavLink to={"/Contact"}className="navbar-link" onClick={()=>setmenuIcon(false)}>Contact</NavLink>
             </li>
-            <li>
-                <NavLink to={""}>
-                <PersonOutline className="user-info"/>
-                </NavLink>
-            </li>
+            
             <li>
                 <NavLink to={"/Cart"} className="cart-trolley-link">
                 <FiShoppingCart className="cart-trolley"></FiShoppingCart>
-                <span className="cart-total-item">{total_item}</span>
+                {cart.map((item)=>{
+                    return(
+                        ans += item.amount,
+                        <span className="cart-total-item">{ans}</span>
+                    )
+                      
+                   })}
+                   
                 </NavLink>
             </li>
         </ul>
@@ -73,6 +91,19 @@ const Header = () => {
   )
 };
 const Wrapper = styled.header`
+.sticky{
+    position:fixed;
+    display:flex;
+    height:10rem;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 4.8rem;
+    width:100%;
+    background-color:#f9f9ff; 
+    top:0;
+    left:0;
+    z-index:1000;
+}
 .navbar{
     display:flex;
     height:10rem;

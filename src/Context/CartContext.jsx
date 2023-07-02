@@ -1,9 +1,9 @@
-import React,{ useContext, useReducer } from "react";
+import React,{useEffect, useContext, useReducer } from "react";
 import reducer from "../reducer/CartReducer";
 
 
 const CartContext = React.createContext();
-/*const getLocalCartData=()=>{
+const getLocalCartData=()=>{
   let localData=localStorage.getItem('nishiitem');
   if (localData ===[])
   {
@@ -12,11 +12,11 @@ const CartContext = React.createContext();
   else{
     return JSON.parse(localData);
   }
-}*/
+}
 
 const initialState = {
-  //cart: getLocalCartData(),
-  cart:[],
+  cart: getLocalCartData(),
+  //cart:[],
   total_item: "",
   total_price: "",
   shipping_fee: 50000,
@@ -27,7 +27,7 @@ const CartProvider = ({ children }) => {
 
   const addToCart = (id, color, amount, products) => {
     dispatch({ type: "ADD_TO_CART", payload: { id, color, amount, products } });
-    //dispatch({ type: "CART_TOTAL_ITEM_PRICE "});
+   
   };
   const removeItem=(id)=>{
     dispatch({ type: "REMOVE_FROM_CART", payload:  id });
@@ -40,14 +40,10 @@ const CartProvider = ({ children }) => {
   const setincrease = (id) => {
     dispatch({ type: "INCREASE", payload:  id });
   };
- // useEffect(()=>{
-    //dispatch({ type: "CART_TOTAL_ITEM_PRICE "});
-    
-    //localStorage.setItem('nishiitem',JSON.stringify(state.cart))
-  //},[state.cart])
- //const updateCart=()=>{
-  //dispatch({ type: "CART_TOTAL_ITEM_PRICE "});
- //}
+ useEffect(()=>{
+    localStorage.setItem('nishiitem',JSON.stringify(state.cart))
+  },[state.cart])
+ 
   const clearCart=()=>{
     dispatch({ type: "CLEAR_CART"});
   }

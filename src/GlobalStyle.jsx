@@ -79,10 +79,9 @@ export const GlobalStyle = createGlobalStyle`
     grid-template-columns: repeat(5,1fr);
   }
   .btn{
-    background-color: rgb(98, 43, 243);
+    background:linear-gradient(to left,#74ebd5,#9face6);;
     padding: 0.5rem 0.5rem;
-    color: rgb(255, 255, 255);
-    background-color: none;
+    
     text-transform: uppercase;
     text-decoration: none;
     text-align: center;
@@ -91,8 +90,9 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: 4px;
   }
   .btn:hover, .btn:active{
-    background-color: rgb(43, 243, 70);
-    color: rgb(0,0,0);
+    box-shadow:0px 20px 20px 0px rgb(132 144 255/30%);;
+    transition: all 0.3s ease;
+    color:black;
     
     
   }

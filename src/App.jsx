@@ -19,11 +19,12 @@ import { GlobalStyle } from "./GlobalStyle";
 
 
 const App = () => {
+  
   return (
     <>
     <BrowserRouter>
     <GlobalStyle />
-    <Header/>
+    <Header />
     
     <Routes>
         <Route exath path="/" element={<Home/>}/>
@@ -31,7 +32,7 @@ const App = () => {
         <Route exath path="/contact" element={<Contact/>}/>
         <Route exath path="/products" element={<Products/>}/>
         <Route exath path="/singleproduct/:id" element={<SingleProduct/>}/>
-        <Route exath path="/cart" element={<Cart/>}/>
+        <Route exath path="/cart" element={<Cart />}/>
         <Route exath path="*" element={<Error/>}/>
         
         

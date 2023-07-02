@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { useCartContext } from "../Context/CartContext";
 
 
-const CartItem = ({ id, name, image, color, price, amount}) => {
+const CartItem = ({ id, name, image, color, price, amount,}) => {
   const {removeItem,setdecrease,setincrease} = useCartContext();
   
  

@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ useEffect, useState }  from 'react'
 import { useCartContext } from "./Context/CartContext";
 import CartItem from "./components/CartItem";
 import styled from 'styled-components';
@@ -6,9 +6,20 @@ import { NavLink } from 'react-router-dom';
 import FormatPrice from './Helper/FormatPrice';
 
 
+
 const Cart = () => {
-  const { cart,clearCart,shipping_fee,total_price } = useCartContext();
-  
+  const { cart,clearCart,shipping_fee} = useCartContext();
+  const[price, setSum_price] =useState() 
+  const handleSumPrice=()=>{
+    let ans=0;
+    cart.map((item)=>{
+      ans += item.amount * item.price
+    })
+    setSum_price(ans)
+  }
+  useEffect(()=>{
+    handleSumPrice();
+  })
   if (cart.length ===0)
   {
     return(
@@ -46,12 +57,12 @@ const Cart = () => {
         <NavLink to="/products" >
         <button className='btn'>CONTINUE SHOPPING</button>
         </NavLink>
-        <button className='btn buttondiv' onClick={clearCart}>CLEAR CART</button>
+        <button className='btn12 buttondiv' onClick={clearCart}>CLEAR CART</button>
         </div>
         <div className='total_price_div'>
           <div className='total_price_div_div'>
           <p>Subtotal:</p>
-          <p><FormatPrice price={total_price}/></p>
+        <p><FormatPrice price={price}/></p>
           
           
           </div>
@@ -62,7 +73,7 @@ const Cart = () => {
           <hr/>
           <div className='total_price_div_div'>
           <p>  Order Total:</p>
-          <p><FormatPrice price={total_price+ shipping_fee}/></p>
+          <p><FormatPrice price={price+ shipping_fee}/></p>
           </div>
           
         </div>
@@ -145,7 +156,7 @@ hr {
 
 }
 
-.btn{
+.btn12{
   background-color: rgb(98, 43, 243);
   padding: 0.5rem 0.5rem;
   color: rgb(255, 255, 255);
@@ -157,8 +168,8 @@ hr {
   transition: all 0.3s linear;
   border-radius: 4px;
 }
-.btn:hover, .btn:active{
-  background-color: rgb(43, 243, 70);
+.btn12:hover, .btn12:active{
+ 
   color: rgb(0,0,0);
   
   
