@@ -19,10 +19,12 @@ const HeroSection = (props) => {
         </p>*/}
         <h2>Shop at Sale Prices before the Sale Starts!</h2>
         <h3>60-90% Off</h3>
+        <div className='btn-middle'>
         <NavLink to="/products">
             <button className='btn'>Shop Now</button>
 
         </NavLink>
+        </div>
 
     </div>
     <div className='hero-section-pic'>
@@ -158,20 +160,20 @@ figure{
     .hero-section{
         display:flex;
         justify-content:center;
-        align-item;center;
+        align-item:center;
         flex-direction:column;
         
     
     }
     @media screen and (max-width: 500px) {
-        h1{
+       .hero-section-data h1{
             font-size:2.5rem;
         }
-        h2{
-            font-size:1.5rem; 
+        .hero-section-data h2{
+            font-size:2.5rem; 
         }
-        h3{
-            font-size:1rem; 
+        .hero-section-data h3{
+            font-size:2rem; 
         }
         .img-style{
             height: 20rem;
@@ -184,6 +186,11 @@ figure{
         }
         .btn{
             font-size:1rem;
+        }
+        .btn-middle{
+            display:flex;
+            justify-content:center;
+            align-item:center;
         }
 
   }
@@ -207,6 +214,8 @@ figure{
         padding: 2rem;
     
     }
+    
+
     
    
     

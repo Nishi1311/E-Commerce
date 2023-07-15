@@ -16,7 +16,7 @@ const item=[
         id:3,
         name:'Top Rated Smartwatches',
         title:'Health,Tracking & More',
-        quote:'Never Before Deals!'
+        
     }
 ]
 export default item;
