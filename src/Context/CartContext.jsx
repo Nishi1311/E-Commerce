@@ -2,16 +2,21 @@ import React,{useEffect, useContext, useReducer } from "react";
 import reducer from "../reducer/CartReducer";
 
 
+
 const CartContext = React.createContext();
 const getLocalCartData=()=>{
  let localData=localStorage.getItem('nishiitem');
-  if (localData ===[])
-  {
-    return [];
-  }
-  else{
-    return JSON.parse(localData);
-  }
+  //if (localData ===[])
+  //{
+    //return [];
+  //}
+  //else{
+    //return JSON.parse(localData);
+ // }
+ const parsedata=JSON.parse(localData);
+ if(!Array.isArray(parsedata))return [];
+
+ return parsedata;
 }
 
 const initialState = {
