@@ -4,7 +4,7 @@ import reducer from "../reducer/CartReducer";
 
 const CartContext = React.createContext();
 const getLocalCartData=()=>{
-  let localData=localStorage.getItem('nishiitem');
+ let localData=localStorage.getItem('nishiitem');
   if (localData ===[])
   {
     return [];
@@ -22,11 +22,12 @@ const initialState = {
   shipping_fee: 50000,
 };
 
+
 const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const addToCart = (id, color, amount, products) => {
-    dispatch({ type: "ADD_TO_CART", payload: { id, color, amount, products } });
+    dispatch({ type: "ADD_TO_CART", payload: { id, color, amount, products }});
    
   };
   const removeItem=(id)=>{
@@ -40,6 +41,7 @@ const CartProvider = ({ children }) => {
   const setincrease = (id) => {
     dispatch({ type: "INCREASE", payload:  id });
   };
+
  useEffect(()=>{
     localStorage.setItem('nishiitem',JSON.stringify(state.cart))
   },[state.cart])

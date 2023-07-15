@@ -60,6 +60,7 @@ window.addEventListener('scroll',myfun)
                 <NavLink to={"/Cart"} className="cart-trolley-link">
                 <FiShoppingCart className="cart-trolley"></FiShoppingCart>
                 {cart.map((item)=>{
+                    
                     return(
                         ans += item.amount,
                         <span className="cart-total-item">{ans}</span>

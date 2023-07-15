@@ -12,6 +12,7 @@ const Cart = () => {
   const[price, setSum_price] =useState() 
   const handleSumPrice=()=>{
     let ans=0;
+   
     cart.map((item)=>{
       ans += item.amount * item.price
     })
@@ -30,6 +31,7 @@ const Cart = () => {
       </Wrapper1>
     )
   }
+  
   return (
     
     <Wrapper>

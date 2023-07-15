@@ -144,13 +144,18 @@ margin-top:5rem;
   }
   .sorting-list--grid{
     display:flex;
-    flex-direction:row;
+    flex-direction:column;
     gap:3.5rem;
   }
 }
 @media screen and (max-width: 300px) {
   flex-direction:column;
   gap:1.5rem;
+  .sorting-list--grid{
+    
+    flex-direction:row;
+    
+  }
 .sort-selection .sort-selection--style{
   cursor:pointer;
   padding:0.3rem;

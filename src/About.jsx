@@ -1,19 +1,172 @@
 import React from 'react'
-import Herosection from './components/Herosection'
+import styled from 'styled-components';
 
 
 const About = () => {
    
-   const data1={
-      name:'Nishi Commerce',
-    }
+   
     return (
       <>
       
-      <Herosection mydata={data1} />
+      
+      <Wrapper>
+    <div className='container'>
+    <div className='grid grid-two-column about-section'>  
+    <div className='about-section-data'>
+        
+        <h1 className='intro'>Fashion Carnival</h1>
+        <h1>50-80% off</h1>
+       
+        <h2>Flash & Strike Steals</h2>
+        <h3>Refreshed every 4 hours</h3>
+        
+
+    </div>
+    <div className='about-section-pic'>
+        <figure>
+            <img src='images/pexels-ksenia-chernaya-3951790.jpg' alt='hero' className='img-style'/>
+        </figure>
+        
+
+    </div>
+    </div>
+    </div>
+    </Wrapper>
+      
+
       </>
   )
 
 }
+const Wrapper=styled.section`
+
+h1{
+   font-weight:bold;
+   font_size:900rem;
+   margin:2rem;
+}
+h2{
+   font-weight:400;
+   font_size:350rem;
+   margin:2rem;
+}
+h3{
+   font-weight:400;
+   font_size:350rem;
+   margin:2rem;
+}
+
+
+
+.img-style{
+   height: 30rem;
+   min-width: 30rem;
+}
+.about-section-data{
+   padding: 5rem;
+
+}
+.about-section-data p{
+
+   margin: 2rem 0;
+ 
+}
+.about-section-data h1{
+
+   text-transform: capitalize;
+   font-weight: bold;
+ 
+}
+.about-section-data .intro-data{
+
+   margin-bottom: 0;
+ 
+}
+.about-section-pic{
+   width: 100%;
+   height: auto;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+figure{
+   position: relative;
+}
+
+@media screen and (max-width: 1200px) {
+   margin-bottom:2rem;
+   .grid-two-column{
+       grid-template-columns:1fr;
+   }
+   .grid {
+     gap: 5rem;
+     padding:0 3rem;
+   }
+   figure::after {
+     content: "";
+     width: 50%;
+     height: 90%;
+     left: 15rem;
+     top: -10%;
+     /* bottom: 10%; */
+     background-color: rgba(81, 56, 238, 0.4);
+   }
+   .about-section{
+       display:flex;
+       justify-content:center;
+       align-item;center;
+       flex-direction:column;
+       
+   
+   }
+   @media screen and (max-width: 500px) {
+       h1{
+           font-size:2.5rem;
+       }
+       h2{
+           font-size:1.5rem; 
+       }
+       h3{
+           font-size:1rem; 
+       }
+       .img-style{
+           height: 20rem;
+           min-width: 15rem;
+           padding:1rem;
+       }
+       .about-section-data{
+           padding: 3rem;
+       
+       }
+       .btn{
+           font-size:1rem;
+       }
+
+ }
+ @media screen and (max-width: 340px) {
+   h1{
+       font-size:1.5rem;
+   }
+   h2{
+       font-size:1rem; 
+   }
+   h3{
+       font-size:1.5rem; 
+   }
+   .about-section-pic img{
+       height: 20rem;
+       width: 20rem;
+      
+   }
+   
+   .about-section-data{
+       padding: 2rem;
+   
+   }
+   
+  
+   
+
+}`
 
 export default About;

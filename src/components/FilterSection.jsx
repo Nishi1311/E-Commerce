@@ -285,5 +285,6 @@ color: rgb(0,0,0);}*/}
   gap:1rem;
 }
 }
+
 `;
 export default FilterSection;

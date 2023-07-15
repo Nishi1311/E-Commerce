@@ -117,6 +117,7 @@ const Wrapper = styled.section`
 }
 
 }
+
  
 
 @media screen and (max-width: 460px) {
@@ -124,14 +125,25 @@ const Wrapper = styled.section`
     max-width:18rem;
   }
 }
+@media screen and (max-width: 400px) {
+  .section{
+    max-width:12rem;
+  }
+}
+@media screen and (max-width: 328px) {
+  figure{
+    width:85%;
+  }
+  .card{
+    width:85%;
+  }
+}
 
 @media screen and (max-width: 300px) {
-  figure{
-    width:80%;
-  }
+  
 
 .card{
-  width:95%;
+  width:85%;
 }
 .card-data-flex h3{
 font-size:1.5rem;
@@ -140,6 +152,20 @@ font-size:1.5rem;
   font-size:1.5rem;
   }
 }
+@media screen and (max-width: 280px) {
+  figure{
+    width:80%;
+  }
+  .card{
+    width:85%;
+  }
+  .card-data-flex{
+    display: flex;
+    flex-direction:column;
+  }
+  
+}
+
 `;
 
 export default GridView;

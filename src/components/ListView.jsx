@@ -103,6 +103,9 @@ const Wrapper = styled.section`
       color: #fff;
     }
   }
+  @media screen and (max-width: 1000px) {
+    padding: 4rem 0;
+  }
   @media screen and (max-width: 887px) {
     .grid-two-column{
       grid-template-columns: repeat(1,1fr);
@@ -138,6 +141,14 @@ const Wrapper = styled.section`
     font-size:1.5rem;
     }
    
+  }
+  @media screen and (max-width: 286px) {
+    .card{
+      max-width:85%;
+    } 
+    .card-data h3{
+      font-size:1.5rem;
+    }
   }
 `;
 
